@@ -15,7 +15,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext homeContext) {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title, style: const TextStyle(fontSize: 20)),
@@ -42,14 +42,14 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: const Icon(Icons.add),
                 ),
                 BlocConsumer<CounterCubit, CounterState>(
-                  listener: (context, state) {
+                  listener: (homeContext, state) {
                     final SnackBar snackBar;
                     if (state.isIncremented == true) {
                       snackBar = const SnackBar(
                         content: Text('Incremented'),
                         duration: Duration(milliseconds: 4),
                       );
-                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                      ScaffoldMessenger.of(homeContext).showSnackBar(snackBar);
                     } else if (state.isIncremented == false) {
                       snackBar = const SnackBar(
                         content: Text('Decremented'),

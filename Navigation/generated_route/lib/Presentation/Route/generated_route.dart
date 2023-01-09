@@ -14,14 +14,14 @@ class GeneratedRoute {
     switch (routeSettings.name) {
       case '/':
         return MaterialPageRoute(
-          builder: (context) => BlocProvider.value(
+          builder: (homeContext) => BlocProvider.value(
             value: _counterCubit,
             child: const HomeScreen(title: 'Home Screen', theme: Colors.orange),
           ),
         );
       case '/second':
         return MaterialPageRoute(
-          builder: (context) => BlocProvider.value(
+          builder: (secondContext) => BlocProvider.value(
             value: _counterCubit,
             child:
                 const SecondScreen(title: 'Second Screen', theme: Colors.green),
@@ -29,7 +29,7 @@ class GeneratedRoute {
         );
       case '/third':
         return MaterialPageRoute(
-          builder: (context) => BlocProvider.value(
+          builder: (thirdContext) => BlocProvider.value(
             value: _counterCubit,
             child:
                 const ThirdScreen(title: 'Third Screen', theme: Colors.brown),
