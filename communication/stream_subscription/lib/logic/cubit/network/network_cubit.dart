@@ -12,7 +12,7 @@ class NetworkCubit extends Cubit<NetworkState> {
   NetworkCubit(
       {required this.connectivity, required this.connectivitySubscription})
       : super(NetworkLoading()) {
-    listenSubscription();
+    monitorConnectivity();
   }
 
   void emitInternetConnected({required NetworkStatus status}) =>
@@ -21,7 +21,7 @@ class NetworkCubit extends Cubit<NetworkState> {
   void emitInternetDisconnected() =>
       emit(NetworkDisconnected(status: NetworkStatus.none));
 
-  void listenSubscription() {
+  void monitorConnectivity() {
     connectivitySubscription =
         connectivity.onConnectivityChanged.listen((ConnectivityResult result) {
       if (result == ConnectivityResult.wifi) {
