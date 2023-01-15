@@ -8,10 +8,8 @@ part 'network_state.dart';
 
 class NetworkCubit extends Cubit<NetworkState> {
   final Connectivity connectivity;
-  StreamSubscription connectivitySubscription;
-  NetworkCubit(
-      {required this.connectivity, required this.connectivitySubscription})
-      : super(NetworkLoading()) {
+  late StreamSubscription connectivitySubscription;
+  NetworkCubit({required this.connectivity}) : super(NetworkLoading()) {
     monitorConnectivity();
   }
 
@@ -21,8 +19,8 @@ class NetworkCubit extends Cubit<NetworkState> {
   void emitInternetDisconnected() =>
       emit(NetworkDisconnected(status: NetworkStatus.none));
 
-  void monitorConnectivity() {
-    connectivitySubscription =
+  StreamSubscription<ConnectivityResult> monitorConnectivity() {
+    return connectivitySubscription =
         connectivity.onConnectivityChanged.listen((ConnectivityResult result) {
       if (result == ConnectivityResult.wifi) {
         emitInternetConnected(status: NetworkStatus.wifi);
