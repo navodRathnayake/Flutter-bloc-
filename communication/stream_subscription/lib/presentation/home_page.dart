@@ -16,6 +16,21 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: const Text('Home Page'),
       ),
+      body: SafeArea(
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: const [
+              Icon(Icons.wifi, size: 50),
+              Text('change the connection to see the changes'),
+              Text(
+                '01',
+                style: TextStyle(fontSize: 33),
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
